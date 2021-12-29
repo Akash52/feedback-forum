@@ -87,7 +87,7 @@ header {
 
 .rating li:hover,
 .num-display {
-  background: #ff6a95;
+  background: #22c55e;
   color: #fff;
 }
 
@@ -96,7 +96,7 @@ header {
 }
 
 [type='radio']:checked ~ label {
-  background: #ff6a95;
+  background: #22c55e;
   color: #fff;
 }
 
@@ -212,6 +212,11 @@ input:focus {
 h2 {
   letter-spacing: 2px;
   font-weight: 900;
+}
+
+.card.reverse {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
 }
 
 @media (max-width: 600px) {
