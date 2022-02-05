@@ -9,7 +9,8 @@ const FeedbackForm = () => {
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [message, setMessage] = useState('')
   const [rating, setRating] = useState(10)
-  const { addNewFeedback, feedbackEdit } = useContext(FeedbackContext)
+  const { addNewFeedback, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext)
 
   useEffect(() => {
     if (feedbackEdit.edit === true) {
@@ -43,15 +44,20 @@ const FeedbackForm = () => {
       const newFeedback = {
         text,
         rating,
-        date: new Date().toISOString(),
       }
-      addNewFeedback(newFeedback)
-      setText('')
-      setBtnDisabled(true)
-      setMessage('Thank you for your feedback!')
-      setTimeout(() => {
-        setMessage(null)
-      }, 2000)
+
+      if (feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedback)
+        setText('')
+      } else {
+        addNewFeedback(newFeedback)
+        setText('')
+        setBtnDisabled(true)
+        setMessage('Thank you for your feedback!')
+        setTimeout(() => {
+          setMessage(null)
+        }, 2000)
+      }
     }
   }
 
