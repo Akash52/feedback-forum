@@ -2,8 +2,11 @@ import Card from './shared/Card'
 import { useState } from 'react'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
+import { useContext } from 'react'
+import FeedbackContext from '../context/FeedbackContext'
 
-const FeedbackForm = ({ handleAdd }) => {
+const FeedbackForm = () => {
+  const { addNewFeedback } = useContext(FeedbackContext)
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [message, setMessage] = useState('')
@@ -31,7 +34,7 @@ const FeedbackForm = ({ handleAdd }) => {
         rating,
         date: new Date().toISOString(),
       }
-      handleAdd(newFeedback)
+      addNewFeedback(newFeedback)
       setText('')
       setBtnDisabled(true)
       setMessage('Thank you for your feedback!')
