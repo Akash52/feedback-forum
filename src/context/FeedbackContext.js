@@ -30,10 +30,9 @@ export const FeedbackProvider = ({ children }) => {
 
   //Set feedback to edit
 
-  const editFeedback = (id) => {
-    const feedbackToEdit = feedback.find((feedback) => feedback.id === id)
+  const editFeedback = (item) => {
     setFeedbackEdit({
-      item: feedbackToEdit,
+      item,
       edit: true,
     })
   }
@@ -45,6 +44,7 @@ export const FeedbackProvider = ({ children }) => {
         deleteFeedback,
         addNewFeedback,
         editFeedback,
+        feedbackEdit,
       }}
     >
       {children}
