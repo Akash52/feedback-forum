@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
 
-const FeedbackForm = () => {
+const FeedbackForm = ({ handleAdd }) => {
   const [text, setText] = useState('')
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [message, setMessage] = useState('')
@@ -23,23 +23,43 @@ const FeedbackForm = () => {
     setText(e.target.value)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (text.trim().length > 10) {
+      const newFeedback = {
+        text,
+        rating,
+        date: new Date().toISOString(),
+      }
+      handleAdd(newFeedback)
+      setText('')
+      setBtnDisabled(true)
+      setMessage('Thank you for your feedback!')
+      setTimeout(() => {
+        setMessage(null)
+      }, 2000)
+    }
+  }
+
   return (
     <Card>
-      <h2>How Would you rate your service with us?</h2>
-      <RatingSelect select={(rating) => setRating(rating)} />
-      <div className="input-group">
-        <input
-          type="text"
-          onChange={handleTextChange}
-          value={text}
-          placeholder="Write your feedback here"
-        />
+      <form onSubmit={handleSubmit}>
+        <h2>How Would you rate your service with us?</h2>
+        <RatingSelect select={(rating) => setRating(rating)} />
+        <div className="input-group">
+          <input
+            type="text"
+            onChange={handleTextChange}
+            value={text}
+            placeholder="Write your feedback here"
+          />
 
-        <Button type="submit" isDisabled={btnDisabled} version="primary">
-          Send
-        </Button>
-      </div>
-      {message && <div className="message">{message}</div>}
+          <Button type="submit" isDisabled={btnDisabled} version="primary">
+            Send
+          </Button>
+        </div>
+        {message && <div className="message">{message}</div>}
+      </form>
     </Card>
   )
 }
