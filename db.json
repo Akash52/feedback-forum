@@ -16,12 +16,7 @@
       "text": "This is a bad product"
     },
     {
-      "text": "This is Test From Server",
-      "rating": 6,
-      "id": 4
-    },
-    {
-      "text": "Asynch Await is Good",
+      "text": "Async Await is Good Updated",
       "rating": 10,
       "id": 5
     }
