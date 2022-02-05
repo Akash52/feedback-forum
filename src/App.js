@@ -29,8 +29,8 @@ const App = () => {
       <Header />
       <div className="container">
         <FeedbackForm handleAdd={addNewFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
+        <FeedbackStats />
+        <FeedbackList handleDelete={deleteFeedback} />
       </div>
     </FeedbackProvider>
   )
